@@ -1,0 +1,19 @@
+name: ntfy notification test
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ntfy-test.yml'
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send test notification
+        run: |
+          curl -fsS \
+            -H 'Title: BTC Monitor' \
+            -H 'Priority: high' \
+            -H 'Tags: white_check_mark,chart_with_upwards_trend' \
+            -H 'Click: https://mnb1022d.github.io/btc-monitor/' \
+            -d 'BTC Monitorのntfy通知テスト成功。ダッシュボードと通知の接続を確認しました。' \
+            'https://ntfy.sh/btc-monitor-mnb1022d-7f3a91c6e24b'
